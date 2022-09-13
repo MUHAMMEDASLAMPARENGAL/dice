@@ -1,4 +1,7 @@
-var scores, roundScore, activePlayer, gamePlaying;
+var scores, roundScore, roundScore1, activePlayer, gamePlaying;
+var count=0;
+var currentScores=0;
+var winner = document.getElementById("#winner1")  ;
 
 init();
 
@@ -73,12 +76,28 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
 
 
             }
+                count = count+1;
+                playerSelection = count%2;
 
-                roundScore += dice;
-                document.querySelector("#score-" + activePlayer).textContent = roundScore;
+                if (playerSelection==1){
+                    roundScore += dice;
+                    document.querySelector("#score-0").textContent = roundScore;
+                }
+                else{
+                    currentScores += dice;
+                    document.querySelector("#score-1").textContent = currentScores;
+                }
 
 
-                nextPlayer();
+                winnerResult()
+                console.log(winnerResult)
+
+
+                
+                
+
+
+            
 
                 
 
@@ -88,17 +107,20 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
 );
 
 
+function winnerResult(){
+    
+    if ( document.querySelector("#score-0").textContent >= 25){
+        document.querySelector("#winner1").innerText = "PLAYER 1 WON";
+    
+    }else if( document.querySelector("#score-1").textContent >= 25){
+        document.querySelector("#winner1").innerText = "PLAYER 2 WON";
+    }
+    
+} 
 
 
 
 
-
-function nextPlayer() {
-
-    activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
-
-
-}
 
 
 document.querySelector('.btn-new').addEventListener('click', init);
@@ -108,8 +130,9 @@ function init() {
     scores = [0, 0];
     activePlayer = 0;
     roundScore = 0;
+    currentScores = 0;
     
-
+    document.querySelector("#winner1").innerText= null;
     document.getElementById('score-0').textContent = '0';
     document.getElementById('score-1').textContent = '0';
     document.getElementById('current-0').textContent = null;

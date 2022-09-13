@@ -78,7 +78,15 @@ body {
     
 }
 
-
+#winner1{
+    left: 25%;
+    color: #C7365F;
+    font-size: 60px;
+    position: absolute;
+    font-family: sans-serif;
+    font-weight: 300;
+    margin-top: 475px;
+}
 
 
 
